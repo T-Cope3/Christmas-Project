@@ -1,0 +1,30 @@
+Kids have; Name, Naughty Or Nice, Age
+Presents; Gift name, price, how long elves take to create
+Quest; Sort into people gaining best item possible:
+	Details: 
+Questions:
+Do we need to factor in gender, or is there a new list with gender? 
+
+What do each stand for?
+Water Rocket
+14 (age group - minimum)
+15 (age group - maximum)
+9.99 (price of the item)
+12 (how long takes to make) [what unit?] [how man at a time]
+
+Allowed Things:
+Cutting x => 15 year old for more budget.
+
+Questions also allowed on Tues day and Friday! (NOT AT ANY OTHER TIME)
+
+Confirmed Questions:
+Absurd Names okay, numbers apart of name!
+Naughty depends on budget, don't need presents.
+If budget to go to every kid, give them one, weight it to the nice. (Young naughty get presents as well (if able))
+^First old naughty kids go (15-18), then nice 18-17, then give to younger naughty kids.
+PRICE LIMIT IS AN INPUT: AND THE DATE THAT THIS ENTERED IS THE DATE HE BEGINS PRODUCTION (on the day)
+Production time is in days. Can make unlimited products at the same time.
+No money as a present! Use all money possible! (output contains the cost, remainder, list of kids and what they get, total days needed for it)
+End date, Christmas Eve.
+
+NEW OBJECTIVE: All nice kids and 14 and younger naughty kids get presents!
