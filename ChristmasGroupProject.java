@@ -30,4 +30,9 @@ public class ChristmasGroupProject
 		String[] giftTime = new String[Integer.MAX_VALUE];
 	}
 
+	public static String grabLine()
+	{
+
+	}
+
 }
