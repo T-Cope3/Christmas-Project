@@ -3,7 +3,6 @@ Presents; Gift name, price, how long elves take to create
 Quest; Sort into people gaining best item possible:
 	Details: 
 Questions:
-Do we need to factor in gender, or is there a new list with gender? 
 
 What do each stand for?
 Water Rocket
@@ -18,6 +17,7 @@ Cutting x => 15 year old for more budget.
 Questions also allowed on Tues day and Friday! (NOT AT ANY OTHER TIME)
 
 Confirmed Questions:
+Gender doesn't matter.
 Absurd Names okay, numbers apart of name!
 Naughty depends on budget, don't need presents.
 If budget to go to every kid, give them one, weight it to the nice. (Young naughty get presents as well (if able))
@@ -27,4 +27,9 @@ Production time is in days. Can make unlimited products at the same time.
 No money as a present! Use all money possible! (output contains the cost, remainder, list of kids and what they get, total days needed for it)
 End date, Christmas Eve.
 
-NEW OBJECTIVE: All nice kids and 14 and younger naughty kids get presents!
+NEW OBJECTIVE: 
+All nice kids and 14 and younger naughty kids get presents!
+CAN"T CUT ANYTHING UNTIL TOLD OTHERWISE: 1 gift each
+Maximize budget, and age approptriate, made within amount of time: ONLY TRUE CONDITIONS TO BE MET (How many days till Christmans, nothing extreme)
+Gifts within the same range, whatever maximizes the budget. Things like $25:$10 (Percentage of the budget!!!) (Doesn't matter how it's chosen)
+(Could give them each $10 gift as long as it maximises the budget)
