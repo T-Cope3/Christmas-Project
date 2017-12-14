@@ -45,16 +45,19 @@ public class ChristmasGroupProject
 		Scanner reader = new Scanner(new File("kids.txt"));
 		//Delimiter with ','
 		reader.useDelimiter(", ");
+		//ArrayList
 		ArrayList<String> firstName = new ArrayList<String>();
 		ArrayList<String> niceORnot = new ArrayList<String>();
-		ArrayList<Integer> age = new ArrayList<Integer>();
+		ArrayList<String> kidAge = new ArrayList<String>();
+		//loop
 		while(i < 100)
 		{
-			age.add(reader.nextInt());
 			firstName.add(reader.next());
 			niceORnot.add(reader.next());
+			kidAge.add(reader.next());
 			i++;
 		}
+		//Print out to test
 		for(String s: firstName)
 			System.out.println(s);
 		for(String s: niceORnot)
