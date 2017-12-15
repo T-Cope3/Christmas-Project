@@ -37,9 +37,15 @@ public class ChristmasGroupProject
 	Parameters: f; The name of the child, n; whether the kid is naughty or nice [nice = true], a; age of the child.
 	NOTE TO SELF: passed by reference because arrays are objects!
 	*/
+	//TRANSFER FROM ARRAYS TO ARRAY LISTS, can use the .split methods
 	public static void assignKids(String[] f, Boolean[] n, int[] a)
 	{
-
+		//Would need while loops to check it, and would need a variable for counting to create the count to keep the loop in check
+		//Basically what'll happen is it will split itself in half, or it will split by character and set into an array
+		String[] s = new String[80];
+		s = f[1].split(f[1]);
+		//make sure it cuts out commas and make sure that there are no extra spaces! TESTING NEEDED!!!
+		f[1].split(f[1], '_');
 	}
 
 	/* -TC-
