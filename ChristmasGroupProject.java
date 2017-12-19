@@ -30,29 +30,21 @@ public class ChristmasGroupProject
 		String[] giftTime = new String[Integer.MAX_VALUE];
 	}
 
-	//Begin main1
-	public static void main1(String[] args)
+	//Begin finalLogic
+	//Do not try to run this right now, it will absolutely not work. Don't worry, I just need to line up all the variables.
+	public static void finalLogic()
 	{
 		//Declare variables
-		int kids = 25, counter = 24;
-		double budget = 240.00;
-		String[] names = new String[kids];
+		//There is an int variable called counter. It will need to be set to the number of kids - 1. You want a full explanation? Just ask.
 		double[] giftPrice = new double[kids];
-		int[] age = new int[kids];
-		boolean[] naughty = new boolean[kids];
-		double gift1 = 10.00, gift2 = 5.00, highestPrice = 0.00;
-		boolean balanced = false, naughtiesCut = false;
+		boolean balanced = false;
 
 		//Begin for 1
 		for(int a = 0; a < 25; a++)
 		{
-			names[a] = ("Holder" + a);
-			age[a] = 13 + (a % 6);
-			naughty[a] = true;
-			//WE WILL NEED TO ORGANIZE PRESENTS FROM HIGHEST TO LOWEST PRICES
 			//In the actual program, this will need to be a for (or maybe a while) loop, that way there is not a massive list of if/else if/else if/...
 			//Begin if/else 1
-			if(budget >= gift1)
+			if(budget >= gift1 && (naughty[a] == false || age[a] < 15))
 			{
 				giftPrice[a] = gift1;
 				budget = budget - gift1;
@@ -60,33 +52,25 @@ public class ChristmasGroupProject
 			}
 			else
 			{
-				balanced = false;
 				//Begin while 1
 				while(!balanced)
 				{
-					//Begin if 1
-					if(giftPrice[counter] > gift2 && (budget + (gift1 - gift2)) >= 0.00 && naughtiesCut)
+					//Begin if 5
+					if(giftPrice[counter] > gift2 && (budget + (gift1 - gift2)) >= 0.00 && (naughty[a] == false || age[a] < 15))
 					{
 						giftPrice[a] = gift2;
 						budget = budget + (gift1 - gift2);
 						balanced = true;
 					}
-					//End if 1
+					//End if 5
 					counter--;
 				}
 				//End while 1
-				counter = 24;
+				counter = 24; //THIS WILL NEED TO BE ALTERED
 			}
 			//End if/else 1
 		}
 		//End for 1
-		//Begin for 3
-		for(int c = 0; c < 25; c++)
-		{
-			System.out.println(names[c] + "is " + age[c] + " years old and got a present worth " + giftPrice[c]);
-		}
-		//End for 3
-		System.out.println(budget);
 	}
-	//End main1
+	//End mafinalLogic
 }
