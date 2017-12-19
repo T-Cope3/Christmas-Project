@@ -11,10 +11,6 @@ public class ChristmasGroupProject
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-
-		//Just used to test my code
-		grabLine();
-
 		//Main Variables
 		int Totalbudget = 0;
 		int budgetLeft = 0;
@@ -35,37 +31,31 @@ public class ChristmasGroupProject
 		double[] giftPrice = new double[Integer.MAX_VALUE];
 		//Could be set to an integer for simplicity: in days
 		String[] giftTime = new String[Integer.MAX_VALUE];
-
-
 	}
 
-	public static String grabLine() throws FileNotFoundException
+	public static void grabKids() throws FileNotFoundException
 	{
+		//Variballs
 		int i = 0;
+		String line;
+		String[] t;
+		//Scanner
 		Scanner reader = new Scanner(new File("kids.txt"));
 		//Delimiter with ','
 		reader.useDelimiter(", ");
-		//ArrayList
-		ArrayList<String> firstName = new ArrayList<String>();
-		ArrayList<String> niceORnot = new ArrayList<String>();
-		ArrayList<String> kidAge = new ArrayList<String>();
 		//loop
-		while(i < 100)
+		while(reader.hasNext() && i < 99)
 		{
-			firstName.add(reader.next());
-			niceORnot.add(reader.next());
-			kidAge.add(reader.next());
-			i++;
+			//Grab the line
+			line = reader.next();
+			//Split each word with ','
+			t = line.split(",");
+			//Print out
+			for (String str: t)
+			{
+				System.out.println(str);
+			}
+			i++;//Loop
 		}
-		//Print out to test
-		for(String s: firstName)
-			System.out.println(s);
-		for(String s: niceORnot)
-			System.out.println(s);
-		//Close Scanner
-		reader.close();
-
-		return ",";
-	}
-
-}
+	}//End of grabKids
+}//End of ChristmasGroupProject
