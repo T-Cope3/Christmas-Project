@@ -61,6 +61,7 @@ public class ChristmasGroupProject
 		f[1].split(f[1], '_');
 	}
 
+<<<<<<< HEAD
 	/* -TC-
 	Short Desc: Grabs all the data from the 'kids' file and seporates it by the comma into seporate arrays.
 	Parameters: n; name of the gift, p; the price of the gift, t; how long the gift takes to make, l; the age requirement of the present.
@@ -69,6 +70,51 @@ public class ChristmasGroupProject
 	{
 
 	}
+=======
+	//Begin finalLogic
+	//Do not try to run this right now, it will absolutely not work. Don't worry, I just need to line up all the variables.
+	public static void finalLogic()
+	{
+		//Declare variables
+		//There is an int variable called counter. It will need to be set to the number of kids - 1. You want a full explanation? Just ask.
+		double[] giftPrice = new double[kids];
+		boolean balanced = false;
+
+		//Begin for 1
+		for(int a = 0; a < 25; a++)
+		{
+			//In the actual program, this will need to be a for (or maybe a while) loop, that way there is not a massive list of if/else if/else if/...
+			//Begin if/else 1
+			if(budget >= gift1 && (naughty[a] == false || age[a] < 15))
+			{
+				giftPrice[a] = gift1;
+				budget = budget - gift1;
+				balanced = true;
+			}
+			else
+			{
+				//Begin while 1
+				while(!balanced)
+				{
+					//Begin if 5
+					if(giftPrice[counter] > gift2 && (budget + (gift1 - gift2)) >= 0.00 && (naughty[a] == false || age[a] < 15))
+					{
+						giftPrice[a] = gift2;
+						budget = budget + (gift1 - gift2);
+						balanced = true;
+					}
+					//End if 5
+					counter--;
+				}
+				//End while 1
+				counter = 24; //THIS WILL NEED TO BE ALTERED
+			}
+			//End if/else 1
+		}
+		//End for 1
+	}
+	//End mafinalLogic
+>>>>>>> JohnSet
 }
 =======
 	public static void grabKids() throws FileNotFoundException
