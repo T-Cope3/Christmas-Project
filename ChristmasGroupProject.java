@@ -11,8 +11,6 @@ public class ChristmasGroupProject
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		//grabGifts();
-		grabKids();
 
 		//Main Variables
 		Integer Totalbudget = 0;
@@ -22,29 +20,17 @@ public class ChristmasGroupProject
 		//Time/Date class might make this an object, or an integer if it's days left for production
 		String daysLeft = " ";
 
-		//Creation of parallel arrays for the kids:
-	//	String[] firstName = new String[Integer.MAX_VALUE];
-		//could make this boolean if wanted
-<<<<<<< HEAD
-		Boolean[] naughtyOrNice = new Boolean[Integer.MAX_VALUE];
-=======
-	//	String[] naughtyOrNice = new String[Integer.MAX_VALUE];
->>>>>>> IsiahSet
-		//might have to parse Integer for the numeric values
-	//	Integer[] age = new Integer[Integer.MAX_VALUE];
+		List<String> names = new ArrayList<String>();
+		List<Boolean> NorN = new ArrayList<Boolean>();
+		List<Integer> age = new ArrayList<Integer>();
+
 
 		//Creation of parallel arrays for the presents:
-	//	String[] giftName = new String[Integer.MAX_VALUE];
-		//could be set up to become an integer, would probably need to
-	//	Double[] giftPrice = new Double[Integer.MAX_VALUE];
-		//Could be set to an integer for simplicity: in days
-<<<<<<< HEAD
-		String[] giftTime = new String[Integer.MAX_VALUE];
-		//Created for the elves to make the presents
-		int[] daysToMake = new int[Integer.MAX_VALUE];
+		List<String> gameName = new ArrayList<>();
+		List<Integer> startingAge = new ArrayList<>();
+		List<Double> gamePrice = new ArrayList<>();
+		List<Integer> daysToBuild = new ArrayList<>();
 	}
-
-<<<<<<< HEAD
 	/* -TC-
 	Short Desc: Grabs all the data from the 'kids' file and seporates it by the comma into seporate arrays.
 	Parameters: f; The name of the child, n; whether the kid is naughty or nice [nice = true], a; age of the child.
@@ -60,8 +46,6 @@ public class ChristmasGroupProject
 		//make sure it cuts out commas and make sure that there are no extra spaces! TESTING NEEDED!!!
 		f[1].split(f[1], '_');
 	}
-
-<<<<<<< HEAD
 	/* -TC-
 	Short Desc: Grabs all the data from the 'kids' file and seporates it by the comma into seporate arrays.
 	Parameters: n; name of the gift, p; the price of the gift, t; how long the gift takes to make, l; the age requirement of the present.
@@ -70,25 +54,28 @@ public class ChristmasGroupProject
 	{
 
 	}
-=======
 	//Begin finalLogic
 	//Do not try to run this right now, it will absolutely not work. Don't worry, I just need to line up all the variables.
-	public static void finalLogic()
+	//Prarameter list: gP: gamePrice, b: budget, NorN = Naughty or Nice (NorN) a: age,
+	public static void finalLogic(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age)
 	{
 		//Declare variables
 		//There is an int variable called counter. It will need to be set to the number of kids - 1. You want a full explanation? Just ask.
-		double[] giftPrice = new double[kids];
+
+	//--edit generics
 		boolean balanced = false;
+		double[] giftPrice = new double[age.size()];
+		int counter = age.size() - 1;
 
 		//Begin for 1
 		for(int a = 0; a < 25; a++)
 		{
 			//In the actual program, this will need to be a for (or maybe a while) loop, that way there is not a massive list of if/else if/else if/...
 			//Begin if/else 1
-			if(budget >= gift1 && (naughty[a] == false || age[a] < 15))
+			if(b >= gift1 && (NorN.get(a) == false || age.get(a) < 15))
 			{
 				giftPrice[a] = gift1;
-				budget = budget - gift1;
+				b = b - gift1;
 				balanced = true;
 			}
 			else
@@ -97,44 +84,24 @@ public class ChristmasGroupProject
 				while(!balanced)
 				{
 					//Begin if 5
-					if(giftPrice[counter] > gift2 && (budget + (gift1 - gift2)) >= 0.00 && (naughty[a] == false || age[a] < 15))
+					if(giftPrice[counter] > gift2 && (b + (gift1 - gift2)) >= 0.00 && (NorN.get(a) == false || age.get(a) < 15))
 					{
 						giftPrice[a] = gift2;
-						budget = budget + (gift1 - gift2);
+						b = b + (gift1 - gift2);
 						balanced = true;
 					}
 					//End if 5
 					counter--;
 				}
 				//End while 1
-				counter = 24; //THIS WILL NEED TO BE ALTERED
+				counter = age.size() - 1;
 			}
 			//End if/else 1
 		}
 		//End for 1
 	}
-	//End mafinalLogic
->>>>>>> JohnSet
-}
-=======
-	public static void grabKids() throws FileNotFoundException
-	{
-		//Variballs
-		int i = 0;
-		String line;
-		String[] t;
-		//Scanner
-		Scanner reader = new Scanner(new File("kids.txt"));
-		//Delimiter with ','
-		reader.useDelimiter(", ");
-		//loop
-		while(reader.hasNext() && i < 99)
-=======
-	//	String[] giftTime = new String[Integer.MAX_VALUE];
-	}
 
 	public static String[] grabKids() throws FileNotFoundException
->>>>>>> IsiahSet
 		{
 			//Variballs
 			int i = 0;
@@ -161,6 +128,7 @@ public class ChristmasGroupProject
 			}
 			return massData;
 		}//End of grabKids
+
 	public static String[] grabGifts() throws FileNotFoundException
 		{
 			//Variballs
@@ -175,6 +143,8 @@ public class ChristmasGroupProject
 			{
 				//Grab the line
 				line = reader.next();
+
+				t = line.split("\n");
 				//Print out
 				for (String str: t)
 				{
@@ -182,15 +152,7 @@ public class ChristmasGroupProject
 					System.out.println(massData[counter]);
 					counter++;
 				}
+				return massData;
 			}
-<<<<<<< HEAD
-			i++;//Loop
-		}
-	}//End of grabKids
-}//End of ChristmasGroupProject
->>>>>>> IsiahSet
-=======
-			return massData;
-		}//End of grabGifts
-}//End of Christ
->>>>>>> IsiahSet
+		}//End of grabKids
+	}
