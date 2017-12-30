@@ -156,3 +156,97 @@ public class ChristmasGroupProject
 			}
 		}//End of grabKids
 	}
+
+/*
+/*
+John Hayes
+Period 5, Team JIT
+12/21/17, 12/22/17
+This is my work and my work alone. JH
+It's practically a bubble sort.
+//Import packages
+import java.util.*;
+
+//Begin SortTest
+public class SortTest
+{
+	//Begin main
+	public static void main(String[] args)
+	{
+		//Declare variables
+		List<String> names = new ArrayList<String>();
+		List<Double> prices = new ArrayList<Double>();
+		List<String> sortedNames = new ArrayList<String>();
+		List<Double> sortedPrices = new ArrayList<Double>();
+		double priceHolder = 0.00;
+		boolean sorted = false;
+		int sortCounter = 0;
+
+		//Fill arrays
+		//Obviously, these are just for testing purposes.
+		names.add("Meme");
+		names.add("Michael");
+		names.add("Sam");
+		prices.add(69.69);
+		prices.add(5.00);
+		prices.add(10.00);
+
+		//Begin for 1
+		for(int a = 0; a < 3; a++)
+		{
+			sortedPrices.add(prices.get(a));
+		}
+		//End for 1
+
+		//Begin while 1
+		//Practically a bubble sort.
+		while(!sorted && sortCounter + 1 < sortedPrices.size())
+		{
+			//Begin if/else 1
+			//If the price one higher than the price we are looking at, the two are swapped.
+			if(sortedPrices.get(sortCounter) > sortedPrices.get(sortCounter + 1))
+			{
+				priceHolder = sortedPrices.get(sortCounter);
+				sortedPrices.set(sortCounter, sortedPrices.get(sortCounter + 1));
+				sortedPrices.set(sortCounter + 1, priceHolder);
+			}
+			else //Increments sort counter, and loops it back because you are not gonna sort all the prices in one go.
+			{
+				sortCounter++;
+				//Begin if 1
+				if(sortCounter + 1 > sortedPrices.size())
+				{
+					sortCounter = 0;
+				}
+				//End if 1
+			}
+			//End if/else 1
+			sorted = true;
+			//Begin for 2
+			//Checks to see if the prices are sorted
+			for(int b = 0; b < sortedPrices.size() - 1; b++)
+			{
+				//Begin if 2
+				if(sortedPrices.get(b) > sortedPrices.get(b + 1))
+				{
+					sorted = false;
+				}
+				//End if 2
+			}
+			//End for 2
+		}
+		//End while 1
+
+		//Begin for 3
+		for(int c = 0; c < names.size(); c++)
+		{
+			sortedNames.add(names.get(prices.indexOf(sortedPrices.get(c))));
+			System.out.println(sortedNames.get(c));
+			System.out.println(sortedPrices.get(c));
+		}
+		//End for 3
+	}
+	//End main
+}
+//End SortTest
+*/
