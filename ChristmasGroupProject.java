@@ -60,7 +60,7 @@ public class ChristmasGroupProject
 			{
 				if (placeholder-current == 3)
 					a.add(e[current]);
-	
+
 				else if (placeholder-current == 2)
 				{
 					//instead of having the extra statements, I could just put if, else, NorN.add(true, false) instead of taking it in twice
@@ -101,7 +101,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 		 * 6
 		 * 7
 		 * 12 - place
-		 * 
+		 *
 		 */
 		//no longer need the for loop because it will constantly loop
 		for(; placeholder <= e.length-1; placeholder+=4)
@@ -110,7 +110,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 			{
 					if (placeholder-current == 4)
 						a.add(e[current]);
-			
+
 					else if (placeholder-current == 3)
 					{
 						//will grab the boolean value, needs to be converted to the actual boolean earlier
@@ -130,11 +130,11 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 			}
 		}
 	}
-	
+
 		public static String[] trimArray(String[] a)
 	{
 		int numberOfUsed = 0;
-		
+
 		for(int i = 0; i < a.length; i++)
 		{
 			if(a[i] != null)
@@ -142,28 +142,29 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 				numberOfUsed++;
 			}
 		}
-		
+
 		System.out.println(numberOfUsed);
-		
+
 		String[] newbie = new String[numberOfUsed];
-		
+
 		for(int i = 0; i < newbie.length; i++)
 		{
 			newbie[i] = a[i];
 		}
-		
+
 		return newbie;
 	}
-	
+
 	//Do not try to run this right now, it will absolutely not work. Don't worry, I just need to line up all the variables.
 	//Prarameter list: gP: gamePrice, b: budget, NorN = Naughty or Nice (NorN) a: age,
-	public static void giveGifts(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age)
+	public static void giveGifts(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age, List<String> name)
 	{
 		//Declare variables
 	//--edit generics
 		boolean balanced = false;
 		double[] giftPrice = new double[age.size()];
 		int counter = age.size() - 1;
+		String textHolder = "holder";
 
 		//Begin for 1
 		for(int a = 0; a < 25; a++)
@@ -172,7 +173,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 			//Begin if/else 1
 			if(b >= gift1 && (NorN.get(a) == false || age.get(a) < 15))
 			{
-				giftPrice[a] = gift1;
+				giftPrice.get(a) = gift1;
 				b = b - gift1;
 				balanced = true;
 			}
@@ -195,23 +196,31 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 				counter = age.size() - 1;
 			}
 			//End if/else 1
-			
 		}
 		//End for 1
+		//Begin for 2
+		for(int c = 0; c < age.size(); c++)
+		{
+			holder = name.get(c) + " got a " + present.get(c) + ".";
+			printToFile(holder);
+		}
+		//End for 2
+		holder = "The remaining budget was $" + budget + ".";
+		printToFile(holder);
 	}
 	//End giveGifts
 	//Begin grabKids
-	
-	public static void printToFile()
+
+	public static void printToFile(String t)
 	{
 		File outputFile = new File ("Output.txt");
 		PrintWriter writer = new PrintWriter(outputFile);
-		
+
 		// cost, remainder, list of what kids and their gifts, and total days needed
-		writer.write();
+		writer.write(t);
         writer.close();
 	}
-	
+
 	public static String[] grabKids() throws FileNotFoundException
 	{
 		//Variballs
