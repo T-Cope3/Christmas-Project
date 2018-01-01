@@ -1,10 +1,8 @@
+package com.Troy_Test.Troy;
 //ignore the package thing, it's just so that I can pull it up in eclipse without a problem.
 //package com.Troy_Test.Troy;
-
 import java.util.*;
-import java.io.FileNotFoundException;
-import java.io.File;
-import java.util.ArrayList;
+import java.io.*;
 
 //Begin ChristmasGroupProject
 public class ChristmasGroupProject
@@ -165,6 +163,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 		double[] giftPrice = new double[age.size()];
 		int counter = age.size() - 1;
 		String textHolder = "holder";
+		String holder = "";
 
 		//Begin for 1
 		for(int a = 0; a < 25; a++)
@@ -173,7 +172,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 			//Begin if/else 1
 			if(b >= gift1 && (NorN.get(a) == false || age.get(a) < 15))
 			{
-				giftPrice.get(a) = gift1;
+				giftPrice[a] = gift1;
 				b = b - gift1;
 				balanced = true;
 			}
@@ -205,7 +204,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 			printToFile(holder);
 		}
 		//End for 2
-		holder = "The remaining budget was $" + budget + ".";
+		holder = "The remaining budget was $" + b + ".";
 		printToFile(holder);
 	}
 	//End giveGifts
@@ -218,7 +217,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 
 		// cost, remainder, list of what kids and their gifts, and total days needed
 		writer.write(t);
-        writer.close();
+      writer.close();
 	}
 
 	public static String[] grabKids() throws FileNotFoundException
