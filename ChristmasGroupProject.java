@@ -12,11 +12,17 @@ public class ChristmasGroupProject
 
 		//Main Variables
 		Integer Totalbudget = 0;
-		Integer budgetLeft = 0;
 		String[] t;
+		
+		Scanner scan = new Scanner(System.in);
+		
 		//don't actually know what data type this should be
 		//Time/Date class might make this an object, or an integer if it's days left for production
-		String daysLeft = " ";
+		Integer daysLeft = 0;
+		Double budget = 0.00;
+		
+		System.out.println("Please enter the current budget.");
+		budget = Double.parseDouble(scan.nextLine());
 
 		List<String> names = new ArrayList<String>();
 		List<Boolean> NorN = new ArrayList<Boolean>();
@@ -153,12 +159,12 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 	}
 
 	//Prarameter list: gP: gamePrice, b: budget, NorN = Naughty or Nice (NorN) age: age,
-	public static void giveGifts(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName)
+	public static void giveGifts(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName) throws FileNotFoundException
 	{
 		//Declare variables
 		boolean balanced = false, newGift = false;
 		double[] giftPrice = new double[age.size()];
-		String[] giftName = new String[age.size()];
+		String[] giftName1 = new String[age.size()];
 		String holder = "";
 
 		//Begin for 1
@@ -174,7 +180,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c))
 					{
 						giftPrice[a] = gP.get(c);
-						giftName[a] = giftName.get(c);
+						giftName1[a] = giftName.get(c);
 						newGift = true;
 						break;
 					}
@@ -191,10 +197,10 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 						for(int e = gP.size() - 1; e >= 0; e--)
 						{
 							//Begin if 3
-							if(gP.get(e) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c))
+							if(gP.get(e) < b && age.get(e) <= maxAge.get(e) && age.get(e) >= minAge.get(e))
 							{
-								giftPrice[a] = gP.get(c);
-								giftName[a] = giftName.get(c);
+								giftPrice[a] = gP.get(e);
+								giftName1[a] = giftName.get(e);
 								newGift = true;
 								break;
 							}
@@ -215,20 +221,20 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 			//End while 1
 		}
 		//End for 1
-		//Begin for
-		for(int  = 0;  < age.size(); ++)
+		//Begin for loop 5
+		for(int f = 0; f < age.size(); f++)
 		{
-			holder = name.get() + " got a " + present.get() + ".";
+			holder = name.get(f) + " got a " + giftName1[f] + ".";
 			printToFile(holder);
 		}
-		//End for
+		//End for loop 5
 		holder = "The remaining budget was $" + b + ".";
 		printToFile(holder);
 	}
 	//End giveGifts
 	//Begin grabKids
 
-	public static void printToFile(String t)
+	public static void printToFile(String t) throws FileNotFoundException
 	{
 		File outputFile = new File ("Output.txt");
 		PrintWriter writer = new PrintWriter(outputFile);
