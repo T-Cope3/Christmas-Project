@@ -236,6 +236,16 @@ public class ChristmasGroupProject
 			System.out.println(sortedPrices.get(c));
 		}
 		//End for 3
+		//Begin for 4
+		for(int d = 0; d < sortedNames.size(); d++)
+		{
+			names.set(d, sortedNames.get(d));
+			prices.set(d, sortedPrices.get(d));
+			lowAge.set(d, sortedLowAge.get(d));
+			highAge.set(d, sortedHighAge.get(d));
+			productionTime.set(d, sortedProductionTime.get(d));
+		}
+		//End for 4
 	}
 	//End sortGifts
 }
