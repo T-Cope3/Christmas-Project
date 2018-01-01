@@ -39,24 +39,122 @@ public class ChristmasGroupProject
 	NOTE TO SELF: passed by reference because arrays are objects!
 	*/
 	//TRANSFER FROM ARRAYS TO ARRAY LISTS, can use the .split methods
-	public static void assignKids(String[] f, Boolean[] n, int[] a)
+	public static void kidSorted(String[] e, List<String> a, List<Boolean> b, List<Integer> c)
 	{
-		//Would need while loops to check it, and would need a variable for counting to create the count to keep the loop in check
-		//Basically what'll happen is it will split itself in half, or it will split by character and set into an array
-		String[] s = new String[80];
-		s = f[1].split(f[1]);
-		//make sure it cuts out commas and make sure that there are no extra spaces! TESTING NEEDED!!!
-		f[1].split(f[1], '_');
+		int placeholder = 3;
+		int current = 0;
+		/*
+		 * 3 - place
+		 * 0
+		 * 1
+		 * 2
+		 * 6 - place
+		 * 3
+		 * 4
+		 * 5
+		 * 9 - place
+		 */
+		for(; placeholder <= e.length-1; placeholder+=3)
+		{
+			while(current < placeholder)
+			{
+				if (placeholder-current == 3)
+					a.add(e[current]);
+	
+				else if (placeholder-current == 2)
+				{
+					//instead of having the extra statements, I could just put if, else, NorN.add(true, false) instead of taking it in twice
+					if(e[current].equalsIgnoreCase("nice"))
+						e[current] = "true";
+					else
+						e[current] = "false";
+					//will grab the boolean value, needs to be converted to the actual boolean earlier
+					b.add(Boolean.valueOf(e[current]));
+				}
+				else if(placeholder-current == 1)
+				{
+					//stores integer value
+					c.add(Integer.parseInt(e[current]));
+				}
+				current++;
+			}
+		}
 	}
 	/* -TC-
 	Short Desc: Grabs all the data from the 'kids' file and seporates it by the comma into seporate arrays.
 	Parameters: n; name of the gift, p; the price of the gift, t; how long the gift takes to make, l; the age requirement of the present.
 	*/
-	public static void assignGifts(String[] n, double[] p, String[] t, int[] l)
+public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<Double> c, List<Integer> f)
 	{
-
+		//starts out at 0 when looping so counter would have an extra 1
+		int placeholder = 4;
+		int current = 0;
+		/*
+		 * 4 - place
+		 * 0
+		 * 1
+		 * 2
+		 * 3
+		 * 8 - place
+		 * 4
+		 * 5
+		 * 6
+		 * 7
+		 * 12 - place
+		 * 
+		 */
+		//no longer need the for loop because it will constantly loop
+		for(; placeholder <= e.length-1; placeholder+=4)
+		{
+			while(current < placeholder)
+			{
+					if (placeholder-current == 4)
+						a.add(e[current]);
+			
+					else if (placeholder-current == 3)
+					{
+						//will grab the boolean value, needs to be converted to the actual boolean earlier
+						b.add(Integer.parseInt(e[current]));
+					}
+					else if(placeholder-current == 2)
+					{
+						//stores integer value
+						c.add(Double.parseDouble(e[current]));
+					}
+					else if(placeholder-current == 1)
+					{
+						//stores integer value
+						f.add(Integer.parseInt(e[current]));
+					}
+				current++;
+			}
+		}
 	}
-	//Begin giveGifts
+	
+		public static String[] trimArray(String[] a)
+	{
+		int numberOfUsed = 0;
+		
+		for(int i = 0; i < a.length; i++)
+		{
+			if(a[i] != null)
+			{
+				numberOfUsed++;
+			}
+		}
+		
+		System.out.println(numberOfUsed);
+		
+		String[] newbie = new String[numberOfUsed];
+		
+		for(int i = 0; i < newbie.length; i++)
+		{
+			newbie[i] = a[i];
+		}
+		
+		return newbie;
+	}
+	
 	//Do not try to run this right now, it will absolutely not work. Don't worry, I just need to line up all the variables.
 	//Prarameter list: gP: gamePrice, b: budget, NorN = Naughty or Nice (NorN) a: age,
 	public static void giveGifts(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age)
