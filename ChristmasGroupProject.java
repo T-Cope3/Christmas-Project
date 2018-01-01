@@ -1,6 +1,5 @@
 package com.Troy_Test.Troy;
-//ignore the package thing, it's just so that I can pull it up in eclipse without a problem.
-//package com.Troy_Test.Troy;
+
 import java.util.*;
 import java.io.*;
 
@@ -153,57 +152,76 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 		return newbie;
 	}
 
-	//Do not try to run this right now, it will absolutely not work. Don't worry, I just need to line up all the variables.
-	//Prarameter list: gP: gamePrice, b: budget, NorN = Naughty or Nice (NorN) a: age,
-	public static void giveGifts(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age, List<String> name)
+	//Prarameter list: gP: gamePrice, b: budget, NorN = Naughty or Nice (NorN) age: age,
+	public static void giveGifts(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName)
 	{
 		//Declare variables
-	//--edit generics
-		boolean balanced = false;
+		boolean balanced = false, newGift = false;
 		double[] giftPrice = new double[age.size()];
-		int counter = age.size() - 1;
-		String textHolder = "holder";
+		String[] giftName = new String[age.size()];
 		String holder = "";
 
 		//Begin for 1
-		for(int a = 0; a < 25; a++)
+		for(int a = 0; a < age.size(); a++)
 		{
-			//In the actual program, this will need to be a for (or maybe a while) loop, that way there is not a massive list of if/else if/else if/...
-			//Begin if/else 1
-			if(b >= gift1 && (NorN.get(a) == false || age.get(a) < 15))
+			//Begin while 1
+			while(!newGift && NorN.get(a) == true)
 			{
-				giftPrice[a] = gift1;
-				b = b - gift1;
-				balanced = true;
-			}
-			else
-			{
-				//Begin while 1
-				while(!balanced)
+				//Begin for 2
+				for(int c = gP.size() - 1; c >= 0; c--)
 				{
-					//Begin if 5
-					if(giftPrice[counter] > gift2 && (b + (gift1 - gift2)) >= 0.00 && (NorN.get(a) == false || age.get(a) < 15))
+					//Begin if 1
+					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c))
 					{
-						giftPrice[a] = gift2;
-						b = b + (gift1 - gift2);
-						balanced = true;
+						giftPrice[a] = gP.get(c);
+						giftName[a] = giftName.get(c);
+						newGift = true;
+						break;
 					}
-					//End if 5
-					counter--;
+					//End if 1
 				}
-				//End while 1
-				counter = age.size() - 1;
+				//End for 2
+				//Begin if 2
+				if(!newGift)
+				{
+					//Begin for 3
+					for(int d = a - 1; d >= 0; d--)
+					{
+						//Begin for 4
+						for(int e = gP.size() - 1; e >= 0; e--)
+						{
+							//Begin if 3
+							if(gP.get(e) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c))
+							{
+								giftPrice[a] = gP.get(c);
+								giftName[a] = giftName.get(c);
+								newGift = true;
+								break;
+							}
+							//End if 3
+						}
+						//End for 4
+					}
+					//End for 3
+				}
+				//End if 2
+				//Begin if 4
+				if(!newGift)
+				{
+					System.out.println("Santa is going to be in debt.");
+				}
+				//End if 4
 			}
-			//End if/else 1
+			//End while 1
 		}
 		//End for 1
-		//Begin for 2
-		for(int c = 0; c < age.size(); c++)
+		//Begin for
+		for(int  = 0;  < age.size(); ++)
 		{
-			holder = name.get(c) + " got a " + present.get(c) + ".";
+			holder = name.get() + " got a " + present.get() + ".";
 			printToFile(holder);
 		}
-		//End for 2
+		//End for
 		holder = "The remaining budget was $" + b + ".";
 		printToFile(holder);
 	}
