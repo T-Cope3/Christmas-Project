@@ -13,14 +13,14 @@ public class ChristmasGroupProject
 		//Main Variables
 		Integer Totalbudget = 0;
 		String[] t;
-		
+
 		Scanner scan = new Scanner(System.in);
-		
+
 		//don't actually know what data type this should be
 		//Time/Date class might make this an object, or an integer if it's days left for production
 		Integer daysLeft = 0;
 		Double budget = 0.00;
-		
+
 		System.out.println("Please enter the current budget.");
 		budget = Double.parseDouble(scan.nextLine());
 
@@ -159,7 +159,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 	}
 
 	//Prarameter list: gP: gamePrice, b: budget, NorN = Naughty or Nice (NorN) age: age,
-	public static void giveGifts(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName) throws FileNotFoundException
+	public static void giveGifts(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer d, List<Integer> daysLeft) throws FileNotFoundException
 	{
 		//Declare variables
 		boolean balanced = false, newGift = false;
@@ -177,7 +177,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 				for(int c = gP.size() - 1; c >= 0; c--)
 				{
 					//Begin if 1
-					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c))
+					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c) && d < daysLeft.get(c))
 					{
 						giftPrice[a] = gP.get(c);
 						giftName1[a] = giftName.get(c);
@@ -197,7 +197,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 						for(int e = gP.size() - 1; e >= 0; e--)
 						{
 							//Begin if 3
-							if(gP.get(e) < b && age.get(e) <= maxAge.get(e) && age.get(e) >= minAge.get(e))
+							if(gP.get(e) < b && age.get(e) <= maxAge.get(e) && age.get(e) >= minAge.get(e) && d < daysLeft.get(c))
 							{
 								giftPrice[a] = gP.get(e);
 								giftName1[a] = giftName.get(e);
