@@ -195,11 +195,23 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 				counter = age.size() - 1;
 			}
 			//End if/else 1
+			
 		}
 		//End for 1
 	}
 	//End giveGifts
 	//Begin grabKids
+	
+	public static void printToFile()
+	{
+		File outputFile = new File ("Output.txt");
+		PrintWriter writer = new PrintWriter(outputFile);
+		
+		// cost, remainder, list of what kids and their gifts, and total days needed
+		writer.write();
+        writer.close();
+	}
+	
 	public static String[] grabKids() throws FileNotFoundException
 	{
 		//Variballs
