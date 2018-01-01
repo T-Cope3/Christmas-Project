@@ -21,9 +21,6 @@ public class ChristmasGroupProject
 		Integer daysLeft = 0;
 		Double budget = 0.00;
 
-		System.out.println("Please enter the current budget.");
-		budget = Double.parseDouble(scan.nextLine());
-
 		List<String> names = new ArrayList<String>();
 		List<Boolean> NorN = new ArrayList<Boolean>();
 		List<Integer> age = new ArrayList<Integer>();
@@ -32,8 +29,21 @@ public class ChristmasGroupProject
 		//Creation of parallel arrays for the presents:
 		List<String> gameName = new ArrayList<>();
 		List<Integer> startingAge = new ArrayList<>();
+		List<Integer> endingAge = new ArrayList<>();
 		List<Double> gamePrice = new ArrayList<>();
 		List<Integer> daysToBuild = new ArrayList<>();
+		
+		System.out.println("Please enter the current budget.");
+		budget = Double.parseDouble(scan.nextLine());
+		
+		System.out.println("How many days are left till Christmas Eve");
+		daysLeft = Integer.parseInt(scan.nextLine());
+		
+		kidSorted(trimArray(grabKids()), names, NorN, age);
+		giftSorted(trimArray(grabGifts()), gameName, startingAge, endingAge, gamePrice, daysToBuild);
+		//List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer days, Integer daysLeft) throws FileNotFoundException
+		sortGifts(gameName, gamePrice, startingAge, endingAge, daysToBuild);
+		giveGifts(gamePrice, budget, NorN, age, names, startingAge, endingAge, gameName, daysLeft, daysToBuild);
 	}
 	//End main
 	/* -TC-
@@ -87,48 +97,43 @@ public class ChristmasGroupProject
 	Short Desc: Grabs all the data from the 'kids' file and seporates it by the comma into seporate arrays.
 	Parameters: n; name of the gift, p; the price of the gift, t; how long the gift takes to make, l; the age requirement of the present.
 	*/
-public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<Double> c, List<Integer> f)
+public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<Integer> c, List<Double> d, List<Integer> f)
 	{
 		//starts out at 0 when looping so counter would have an extra 1
-		int placeholder = 4;
+		int placeholder = 5;
 		int current = 0;
-		/*
-		 * 4 - place
-		 * 0
-		 * 1
-		 * 2
-		 * 3
-		 * 8 - place
-		 * 4
-		 * 5
-		 * 6
-		 * 7
-		 * 12 - place
-		 *
-		 */
 		//no longer need the for loop because it will constantly loop
-		for(; placeholder <= e.length-1; placeholder+=4)
+		for(; placeholder <= e.length; placeholder+=5)
 		{
 			while(current < placeholder)
 			{
-					if (placeholder-current == 4)
+					if (placeholder-current == 5)
 						a.add(e[current]);
 
-					else if (placeholder-current == 3)
+					else if (placeholder-current == 4)
 					{
 						//will grab the boolean value, needs to be converted to the actual boolean earlier
 						b.add(Integer.parseInt(e[current]));
 					}
+					else if(placeholder-current == 3)
+					{
+						c.add(Integer.parseInt(e[current]));
+					}
 					else if(placeholder-current == 2)
 					{
 						//stores integer value
-						c.add(Double.parseDouble(e[current]));
+						d.add(Double.parseDouble(e[current]));
 					}
 					else if(placeholder-current == 1)
 					{
 						//stores integer value
 						f.add(Integer.parseInt(e[current]));
 					}
+					System.out.println(a);
+					System.out.println(b);
+					System.out.println(c);
+					System.out.println(d);
+					System.out.println(f);
 				current++;
 			}
 		}
@@ -159,7 +164,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 	}
 
 	//Prarameter list: gP: gamePrice, b: budget, NorN = Naughty or Nice (NorN) age: age,
-	public static void giveGifts(List<Double> gP, double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer d, List<Integer> daysLeft) throws FileNotFoundException
+	public static void giveGifts(List<Double> gP, Double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer days, List<Integer> daysLeft) throws FileNotFoundException
 	{
 		//Declare variables
 		boolean balanced = false, newGift = false;
@@ -177,7 +182,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 				for(int c = gP.size() - 1; c >= 0; c--)
 				{
 					//Begin if 1
-					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c) && d < daysLeft.get(c))
+					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c) && days < daysLeft.get(c))
 					{
 						giftPrice[a] = gP.get(c);
 						giftName1[a] = giftName.get(c);
@@ -197,7 +202,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 						for(int e = gP.size() - 1; e >= 0; e--)
 						{
 							//Begin if 3
-							if(gP.get(e) < b && age.get(e) <= maxAge.get(e) && age.get(e) >= minAge.get(e) && d < daysLeft.get(c))
+							if(gP.get(e) < b && age.get(e) <= maxAge.get(e) && age.get(e) >= minAge.get(e) && days < daysLeft.get(e))
 							{
 								giftPrice[a] = gP.get(e);
 								giftName1[a] = giftName.get(e);
@@ -282,8 +287,8 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 		//Variballs
 		int counter = 0;
 		String line;
-		String[] t = new String[10000];
-		String[] massData = new String[1000];
+		String[] t = new String[1500];
+		String[] massData = new String[1500];
 		//Scanner
 		Scanner reader = new Scanner(new File("gifts.txt"));
 
@@ -291,7 +296,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 		while(reader.hasNext())
 		{
 			//Grab the line
-			line = reader.next();
+			line = reader.nextLine();
 
 			t = line.split("\n");
 			//Print out
