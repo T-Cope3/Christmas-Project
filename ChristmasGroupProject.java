@@ -1,4 +1,4 @@
-package com.Troy_Test.Troy;
+//package com.Troy_Test.Troy;
 /*
 Team JIT
 Period 5
@@ -199,7 +199,7 @@ public class ChristmasGroupProject
 		{
 			newGift = false;
 			//Begin while 1
-			while(!newGift && NorN.get(a) == true || age.get(a) < 16)
+			while(!newGift && (NorN.get(a) == true || age.get(a) < 16))
 			{
 				//Begin for 2
 				for(int c = gP.size() - 1; c >= 0; c--)
@@ -208,12 +208,11 @@ public class ChristmasGroupProject
 					//This is where we go if we have the budget for the most expensive gift. You can imagine how much use this gets.
 					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c) && days > daysLeft.get(c))
 					{
-						System.out.println("We got here1");
 						giftPrice[a] = gP.get(c);
 						giftName1[a] = giftName.get(c);
 						newGift = true;
 						b = b - gP.get(c);
-						break; 
+						break;
 					}
 					//End if 1
 				}
@@ -222,17 +221,15 @@ public class ChristmasGroupProject
 				//This is where we go if we don't have enough for the most expensive gift.
 				if(!newGift)
 				{
-					System.out.println("We got here2");
 					//Begin for 3
 					for(int d = a - 1; d >= 0; d--)
 					{
-						System.out.println("We got here3");
 						//Begin for 4
 						for(int e = gP.size() - 1; e >= 0; e--)
 						{
 							//Begin if 3
 							//Translation: If there is enough for the gift after the price swap, is less than the current gift, if in the age range, it can be produced in the time, and if the person is nice/less than 16 years old.
-							if(gP.get(e) < b + (giftPrice[d] - gP.get(e)) && gP.get(e) < giftPrice[d] && age.get(d) <= maxAge.get(e) && age.get(d) >= minAge.get(e) && days > daysLeft.get(e) && NorN.get(d) == true || age.get(d) < 16)
+							if(gP.get(e) < b + (giftPrice[d] - gP.get(e)) && gP.get(e) < giftPrice[d] && age.get(d) <= maxAge.get(e) && age.get(d) >= minAge.get(e) && days > daysLeft.get(e) && (NorN.get(d) == true || age.get(d) < 16))
 							{
 								b = (b + giftPrice[d]) - gP.get(e);
 								giftPrice[d] = gP.get(e);
