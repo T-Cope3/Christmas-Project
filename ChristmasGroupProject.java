@@ -1,3 +1,4 @@
+package com.Troy_Test.Troy;
 /*
 Team JIT
 Period 5
@@ -52,10 +53,13 @@ public class ChristmasGroupProject
 
 		//Call methods
 		kidSorted(trimArray(grabKids()), names, NorN, age);
+		System.out.println("Assigning Kids Done");
 		giftSorted(trimArray(grabGifts()), gameName, startingAge, endingAge, gamePrice, daysToBuild);
+		System.out.println("Assigning Gifts Done");
 		sortGifts(gameName, gamePrice, startingAge, endingAge, daysToBuild);
+		System.out.println("Sorting Arrays Done");
 		giveGifts(gamePrice, budget, NorN, age, names, startingAge, endingAge, gameName, daysLeft, daysToBuild, writer);
-
+		System.out.println("Giving Gifts Done");
 		//closing of the writer -TC
 		writer.close();
 	}
@@ -204,11 +208,12 @@ public class ChristmasGroupProject
 					//This is where we go if we have the budget for the most expensive gift. You can imagine how much use this gets.
 					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c) && days > daysLeft.get(c))
 					{
+						System.out.println("We got here1");
 						giftPrice[a] = gP.get(c);
 						giftName1[a] = giftName.get(c);
 						newGift = true;
 						b = b - gP.get(c);
-						break;
+						break; 
 					}
 					//End if 1
 				}
@@ -217,9 +222,11 @@ public class ChristmasGroupProject
 				//This is where we go if we don't have enough for the most expensive gift.
 				if(!newGift)
 				{
+					System.out.println("We got here2");
 					//Begin for 3
 					for(int d = a - 1; d >= 0; d--)
 					{
+						System.out.println("We got here3");
 						//Begin for 4
 						for(int e = gP.size() - 1; e >= 0; e--)
 						{
