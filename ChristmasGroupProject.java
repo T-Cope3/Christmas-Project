@@ -1,5 +1,3 @@
-package com.Troy_Test.Troy;
-
 import java.util.*;
 import java.io.*;
 
@@ -16,14 +14,13 @@ public class ChristmasGroupProject
 		//Main Variables
 		Integer Totalbudget = 0;
 		String[] t;
-
-		Scanner scan = new Scanner(System.in);
-
-		//don't actually know what data type this should be
-		//Time/Date class might make this an object, or an integer if it's days left for production
 		Integer daysLeft = 0;
 		Double budget = 0.00;
 
+		//Scanner
+		Scanner scan = new Scanner(System.in);
+
+		//Kid parallel arrays
 		List<String> names = new ArrayList<String>();
 		List<Boolean> NorN = new ArrayList<Boolean>();
 		List<Integer> age = new ArrayList<Integer>();
@@ -36,15 +33,16 @@ public class ChristmasGroupProject
 		List<Double> gamePrice = new ArrayList<>();
 		List<Integer> daysToBuild = new ArrayList<>();
 
+		//Get info from user
 		System.out.println("Please enter the current budget.");
 		budget = Double.parseDouble(scan.nextLine());
 
 		System.out.println("How many days are left till Christmas Eve?");
 		daysLeft = Integer.parseInt(scan.nextLine());
 
+		//Call methods
 		kidSorted(trimArray(grabKids()), names, NorN, age);
 		giftSorted(trimArray(grabGifts()), gameName, startingAge, endingAge, gamePrice, daysToBuild);
-		//List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer days, Integer daysLeft) throws FileNotFoundException
 		sortGifts(gameName, gamePrice, startingAge, endingAge, daysToBuild);
 		giveGifts(gamePrice, budget, NorN, age, names, startingAge, endingAge, gameName, daysLeft, daysToBuild, writer);
 
@@ -54,17 +52,21 @@ public class ChristmasGroupProject
 
 	//TC: Basically sorts the mass amount of data into ArrayLists that are returned by 'reference.'
 	//Parameters: e: massData, a: names, b: Naughty Or Nice, c: child's age
+	//Begin kidSorted
 	public static void kidSorted(String[] e, List<String> a, List<Boolean> b, List<Integer> c)
 	{
 		//has to be three because it runs once before integration
 		int placeholder = 3;
 		int current = 0;
-		
+
 		//integrates by 'three' for each set so it assigns it to parallel arrayLists
+		//Begin for 1
 		for(; placeholder <= e.length-1; placeholder+=3)
 		{
+			//Begin while 1
 			while(current < placeholder)
 			{
+				//Begin if/else if/else if 1
 				if (placeholder-current == 3)
 					a.add(e[current]);
 
@@ -83,88 +85,93 @@ public class ChristmasGroupProject
 					//stores integer value
 					c.add(Integer.parseInt(e[current]));
 				}
+				//End if/else if/else if 1
 				current++;
 			}
+			//End while 1
 		}
+		//End for 1
 	}
+	//End kidSorted
 	//TC: Sorting of the mass data that puts it into arrayLists
 	//Parameters: e: massData, a: gift name, b: minimum age, c: maximum age, d: game price, f: how long it will take to produce
+	//Begin giftSorted
 	public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<Integer> c, List<Double> d, List<Integer> f)
 	{
 		//starts out at 0 when looping so counter would have an extra 1
 		int placeholder = 5;
 		int current = 0;
-		
+
 		//incrementation for the 'five' each time so it works like a ladder and switch statement
+		//Begin for 1
 		for(; placeholder <= e.length; placeholder+=5)
 		{
 			//functions as a big switch statement
+			//Begin while 1
 			while(current < placeholder)
 			{
-					if (placeholder-current == 5)
-						a.add(e[current]);
-
-					else if (placeholder-current == 4)
-					{
-						
-						b.add(Integer.parseInt(e[current]));
-					}
-					else if(placeholder-current == 3)
-					{
-						c.add(Integer.parseInt(e[current]));
-					}
-					//assigning it's parallel array
-					else if(placeholder-current == 2)
-					{
-						//stores double value
-						d.add(Double.parseDouble(e[current]));
-					}
-					else if(placeholder-current == 1)
-					{
-						//stores integer value
-						f.add(Integer.parseInt(e[current]));
-					}
-					//debugging stuff
-					//System.out.println(a);
-					//System.out.println(b);
-					//System.out.println(c);
-					//System.out.println(d);
-					//System.out.println(f);
+				//Begin if/else if/else if/else if/else if 1
+				if (placeholder-current == 5)
+					a.add(e[current]);
+				else if (placeholder-current == 4)
+				{
+					b.add(Integer.parseInt(e[current]));
+				}
+				else if(placeholder-current == 3)
+				{
+					c.add(Integer.parseInt(e[current]));
+				}
+				//assigning it's parallel array
+				else if(placeholder-current == 2)
+				{
+					//stores double value
+					d.add(Double.parseDouble(e[current]));
+				}
+				else if(placeholder-current == 1)
+				{
+					//stores integer value
+					f.add(Integer.parseInt(e[current]));
+				}
+				//Begin if/else if/else if/else if/else if 1
 				current++;
 			}
+			//End while 1
 		}
+		//End for 1
 	}
-
+	//End giftSorted
 	//TC: trimArray is basically a method that cuts off the null from the end of the String array.
-	//Parameter: 
+	//Parameter:
 	public static String[] trimArray(String[] a)
 	{
+		//Declare variables
 		int numberOfUsed = 0;
-
+		//Begin for 1
 		for(int i = 0; i < a.length; i++)
 		{
 			//Totals the amount of spots used
+			//Begin if 1
 			if(a[i] != null)
 			{
 				numberOfUsed++;
 			}
+			//End if 1
 		}
-
-		System.out.println(numberOfUsed);
-
+		//End for 1
 		//cuts down the array to only the spaces used
 		String[] newbie = new String[numberOfUsed];
-
 		//stops when all squares are used
+		//Begin for 2
 		for(int i = 0; i < newbie.length; i++)
 		{
 			newbie[i] = a[i];
 		}
-
+		//End for 2
 		return newbie;
 	}
-
-	//Prarameter list: gP: gamePrice, b: budget, NorN = Naughty or Nice (NorN) age: age,
+	//End trimArray
+	//JH: This determines what the kids will get, and has more parameters than stars in the sky.
+	//Begin giveGifts
 	public static void giveGifts(List<Double> gP, Double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer days, List<Integer> daysLeft, PrintWriter w) throws FileNotFoundException
 	{
 		//Declare variables
@@ -178,12 +185,13 @@ public class ChristmasGroupProject
 		{
 			newGift = false;
 			//Begin while 1
-			while(!newGift && NorN.get(a) == true)
+			while(!newGift && NorN.get(a) == true || age.get(a) < 16)
 			{
 				//Begin for 2
 				for(int c = gP.size() - 1; c >= 0; c--)
 				{
 					//Begin if 1
+					//This is where we go if we have the budget for the most expensive gift. You can imagine how much use this gets.
 					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c) && days > daysLeft.get(c))
 					{
 						giftPrice[a] = gP.get(c);
@@ -196,6 +204,7 @@ public class ChristmasGroupProject
 				}
 				//End for 2
 				//Begin if 2
+				//This is where we go if we don't have enough for the most expensive gift.
 				if(!newGift)
 				{
 					//Begin for 3
@@ -205,7 +214,8 @@ public class ChristmasGroupProject
 						for(int e = gP.size() - 1; e >= 0; e--)
 						{
 							//Begin if 3
-							if(gP.get(e) < b + (giftPrice[d] - gP.get(e)) && gP.get(e) < giftPrice[d] && age.get(d) <= maxAge.get(e) && age.get(d) >= minAge.get(e) && days > daysLeft.get(e) && NorN.get(d) == true)
+							//Translation: If there is enough for the gift after the price swap, is less than the current gift, if in the age range, it can be produced in the time, and if the person is nice/less than 16 years old.
+							if(gP.get(e) < b + (giftPrice[d] - gP.get(e)) && gP.get(e) < giftPrice[d] && age.get(d) <= maxAge.get(e) && age.get(d) >= minAge.get(e) && days > daysLeft.get(e) && NorN.get(d) == true || age.get(d) < 16)
 							{
 								b = (b + giftPrice[d]) - gP.get(e);
 								giftPrice[d] = gP.get(e);
@@ -233,14 +243,17 @@ public class ChristmasGroupProject
 		//Begin for loop 5
 		for(int f = 0; f < age.size(); f++)
 		{
-			//Begin if 5
+			//Begin if/else 1
 			if(giftName1[f] == null)
 			{
-				giftName1[f] = "a big empty box";
+				//Nothing happens.
 			}
-			//End if 5
-			holder = name.get(f) + " got " + giftName1[f] + ".";
-			printToFile(w, holder);
+			else
+			{
+				holder = name.get(f) + " got a " + giftName1[f] + ".";
+				printToFile(w, holder);
+			}
+			//End if/else 1
 		}
 		//End for loop 5
 		holder = "The remaining budget was $" + b + ".";
@@ -248,7 +261,6 @@ public class ChristmasGroupProject
 	}
 	//End giveGifts
 	//Begin printToFile
-	
 	//TC: prints the file or something like that
 	//Parameter: w: the file you want to print from, t: the string you want to print
 	public static void printToFile(PrintWriter w, String t) throws FileNotFoundException
@@ -258,7 +270,6 @@ public class ChristmasGroupProject
 		//Extra line for spacing
 		w.println();
 	}
-	
 	//End printToFile
 	//Begin grabKids
 	public static String[] grabKids() throws FileNotFoundException
@@ -327,6 +338,7 @@ public class ChristmasGroupProject
 	//End of grabKids
 
 	//Begin sortGifts
+	//JH: Sorts the gifts from lowest to highest price. Another mile of parameters.
 	public static void sortGifts(List<String> names, List<Double> prices, List<Integer> lowAge, List<Integer> highAge, List<Integer> productionTime)
 	{
 		List<String> sortedNames = new ArrayList<String>();
