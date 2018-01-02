@@ -1,4 +1,4 @@
-//package com.Troy_Test.Troy;
+package com.Troy_Test.Troy;
 
 import java.util.*;
 import java.io.*;
@@ -9,6 +9,9 @@ public class ChristmasGroupProject
 	//Begin main
 	public static void main(String[] args) throws FileNotFoundException
 	{
+		//File Output Stuff - TC
+		File outputFile = new File ("Output.txt");
+		PrintWriter writer = new PrintWriter(outputFile);
 
 		//Main Variables
 		Integer Totalbudget = 0;
@@ -43,15 +46,12 @@ public class ChristmasGroupProject
 		giftSorted(trimArray(grabGifts()), gameName, startingAge, endingAge, gamePrice, daysToBuild);
 		//List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer days, Integer daysLeft) throws FileNotFoundException
 		sortGifts(gameName, gamePrice, startingAge, endingAge, daysToBuild);
-		giveGifts(gamePrice, budget, NorN, age, names, startingAge, endingAge, gameName, daysLeft, daysToBuild);
+		giveGifts(gamePrice, budget, NorN, age, names, startingAge, endingAge, gameName, daysLeft, daysToBuild, writer);
+		
+		//closing of the writer -TC
+		writer.close();
 	}
-	//End main
-	/* -TC-
-	Short Desc: Grabs all the data from the 'kids' file and seporates it by the comma into seporate arrays.
-	Parameters: f; The name of the child, n; whether the kid is naughty or nice [nice = true], a; age of the child.
-	NOTE TO SELF: passed by reference because arrays are objects!
-	*/
-	//TRANSFER FROM ARRAYS TO ARRAY LISTS, can use the .split methods
+
 	public static void kidSorted(String[] e, List<String> a, List<Boolean> b, List<Integer> c)
 	{
 		int placeholder = 3;
@@ -93,11 +93,8 @@ public class ChristmasGroupProject
 			}
 		}
 	}
-	/* -TC-
-	Short Desc: Grabs all the data from the 'kids' file and seporates it by the comma into seporate arrays.
-	Parameters: n; name of the gift, p; the price of the gift, t; how long the gift takes to make, l; the age requirement of the present.
-	*/
-public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<Integer> c, List<Double> d, List<Integer> f)
+
+	public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<Integer> c, List<Double> d, List<Integer> f)
 	{
 		//starts out at 0 when looping so counter would have an extra 1
 		int placeholder = 5;
@@ -139,7 +136,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 		}
 	}
 
-		public static String[] trimArray(String[] a)
+	public static String[] trimArray(String[] a)
 	{
 		int numberOfUsed = 0;
 
@@ -164,7 +161,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 	}
 
 	//Prarameter list: gP: gamePrice, b: budget, NorN = Naughty or Nice (NorN) age: age,
-	public static void giveGifts(List<Double> gP, Double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer days, List<Integer> daysLeft) throws FileNotFoundException
+	public static void giveGifts(List<Double> gP, Double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer days, List<Integer> daysLeft, PrintWriter w) throws FileNotFoundException
 	{
 		//Declare variables
 		boolean balanced = false, newGift = false, booleanHolder = false;
@@ -231,30 +228,27 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 		for(int f = 0; f < age.size(); f++)
 		{
 			//Begin if 5
-			if(giftName1[f].equals("null"))
+			if(giftName1[f] == null)
 			{
 				giftName1[f] = "lack of a present due to being naughty";
 			}
 			//End if 5
 			holder = name.get(f) + " got a " + giftName1[f] + ".";
 			System.out.println(holder);
-			printToFile(holder);
+			printToFile(w, holder);
 		}
 		//End for loop 5
 		holder = "The remaining budget was $" + b + ".";
-		printToFile(holder);
+		printToFile(w, holder);
 	}
 	//End giveGifts
 	//Begin grabKids
 
-	public static void printToFile(String t) throws FileNotFoundException
+	public static void printToFile(PrintWriter w, String t) throws FileNotFoundException
 	{
-		File outputFile = new File ("Output.txt");
-		PrintWriter writer = new PrintWriter(outputFile);
-
 		// cost, remainder, list of what kids and their gifts, and total days needed
-		writer.write(t);
-      writer.close();
+		w.write(t);
+		w.println();
 	}
 
 	public static String[] grabKids() throws FileNotFoundException
