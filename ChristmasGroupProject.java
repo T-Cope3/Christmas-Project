@@ -1,3 +1,13 @@
+/*
+Team JIT
+Period 5
+12/8/17 - 1/1/18
+This is our work and our work alone. JIT
+S A N T A
+What went right: Communication from the beginning, planning, goal setting from the beginning. Immediate division of jobs. The project runs. Flexibility and general collaboration.
+What went wrong: Time management. Lack of direction during meetings. Planning of specifics.
+What we learned: Communication is KEY. Better to work individual and merge at the end. Easier with using parameters, 'function-oriented programming'.
+*/
 import java.util.*;
 import java.io.*;
 
@@ -7,7 +17,7 @@ public class ChristmasGroupProject
 	//Begin main
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		//File Output Stuff - TC
+		//File Output Stuff - JIT
 		File outputFile = new File ("Output.txt");
 		PrintWriter writer = new PrintWriter(outputFile);
 
