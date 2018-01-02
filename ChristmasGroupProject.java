@@ -1,4 +1,4 @@
-//package com.Troy_Test.Troy;
+package com.Troy_Test.Troy;
 
 import java.util.*;
 import java.io.*;
@@ -52,21 +52,15 @@ public class ChristmasGroupProject
 		writer.close();
 	}
 
+	//TC: Basically sorts the mass amount of data into ArrayLists that are returned by 'reference.'
+	//Parameters: e: massData, a: names, b: Naughty Or Nice, c: child's age
 	public static void kidSorted(String[] e, List<String> a, List<Boolean> b, List<Integer> c)
 	{
+		//has to be three because it runs once before integration
 		int placeholder = 3;
 		int current = 0;
-		/*
-		 * 3 - place
-		 * 0
-		 * 1
-		 * 2
-		 * 6 - place
-		 * 3
-		 * 4
-		 * 5
-		 * 9 - place
-		 */
+		
+		//integrates by 'three' for each set so it assigns it to parallel arrayLists
 		for(; placeholder <= e.length-1; placeholder+=3)
 		{
 			while(current < placeholder)
@@ -93,15 +87,18 @@ public class ChristmasGroupProject
 			}
 		}
 	}
-
+	//TC: Sorting of the mass data that puts it into arrayLists
+	//Parameters: e: massData, a: gift name, b: minimum age, c: maximum age, d: game price, f: how long it will take to produce
 	public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<Integer> c, List<Double> d, List<Integer> f)
 	{
 		//starts out at 0 when looping so counter would have an extra 1
 		int placeholder = 5;
 		int current = 0;
-		//no longer need the for loop because it will constantly loop
+		
+		//incrementation for the 'five' each time so it works like a ladder and switch statement
 		for(; placeholder <= e.length; placeholder+=5)
 		{
+			//functions as a big switch statement
 			while(current < placeholder)
 			{
 					if (placeholder-current == 5)
@@ -109,16 +106,17 @@ public class ChristmasGroupProject
 
 					else if (placeholder-current == 4)
 					{
-						//will grab the boolean value, needs to be converted to the actual boolean earlier
+						
 						b.add(Integer.parseInt(e[current]));
 					}
 					else if(placeholder-current == 3)
 					{
 						c.add(Integer.parseInt(e[current]));
 					}
+					//assigning it's parallel array
 					else if(placeholder-current == 2)
 					{
-						//stores integer value
+						//stores double value
 						d.add(Double.parseDouble(e[current]));
 					}
 					else if(placeholder-current == 1)
@@ -126,6 +124,7 @@ public class ChristmasGroupProject
 						//stores integer value
 						f.add(Integer.parseInt(e[current]));
 					}
+					//debugging stuff
 					//System.out.println(a);
 					//System.out.println(b);
 					//System.out.println(c);
@@ -136,22 +135,27 @@ public class ChristmasGroupProject
 		}
 	}
 
+	//TC: trimArray is basically a method that cuts off the null from the end of the String array.
+	//Parameter: 
 	public static String[] trimArray(String[] a)
 	{
 		int numberOfUsed = 0;
 
 		for(int i = 0; i < a.length; i++)
 		{
+			//Totals the amount of spots used
 			if(a[i] != null)
 			{
 				numberOfUsed++;
 			}
 		}
 
-		//System.out.println(numberOfUsed);
+		System.out.println(numberOfUsed);
 
+		//cuts down the array to only the spaces used
 		String[] newbie = new String[numberOfUsed];
 
+		//stops when all squares are used
 		for(int i = 0; i < newbie.length; i++)
 		{
 			newbie[i] = a[i];
@@ -232,10 +236,10 @@ public class ChristmasGroupProject
 			//Begin if 5
 			if(giftName1[f] == null)
 			{
-				giftName1[f] = "big empty box";
+				giftName1[f] = "a big empty box";
 			}
 			//End if 5
-			holder = name.get(f) + " got a " + giftName1[f] + ".";
+			holder = name.get(f) + " got " + giftName1[f] + ".";
 			printToFile(w, holder);
 		}
 		//End for loop 5
@@ -244,12 +248,17 @@ public class ChristmasGroupProject
 	}
 	//End giveGifts
 	//Begin printToFile
+	
+	//TC: prints the file or something like that
+	//Parameter: w: the file you want to print from, t: the string you want to print
 	public static void printToFile(PrintWriter w, String t) throws FileNotFoundException
 	{
-		// cost, remainder, list of what kids and their gifts, and total days needed
+		//Prints to the file
 		w.write(t);
+		//Extra line for spacing
 		w.println();
 	}
+	
 	//End printToFile
 	//Begin grabKids
 	public static String[] grabKids() throws FileNotFoundException
