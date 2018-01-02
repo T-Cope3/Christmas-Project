@@ -1,4 +1,4 @@
-package com.Troy_Test.Troy;
+//package com.Troy_Test.Troy;
 
 import java.util.*;
 import java.io.*;
@@ -32,13 +32,13 @@ public class ChristmasGroupProject
 		List<Integer> endingAge = new ArrayList<>();
 		List<Double> gamePrice = new ArrayList<>();
 		List<Integer> daysToBuild = new ArrayList<>();
-		
+
 		System.out.println("Please enter the current budget.");
 		budget = Double.parseDouble(scan.nextLine());
-		
+
 		System.out.println("How many days are left till Christmas Eve");
 		daysLeft = Integer.parseInt(scan.nextLine());
-		
+
 		kidSorted(trimArray(grabKids()), names, NorN, age);
 		giftSorted(trimArray(grabGifts()), gameName, startingAge, endingAge, gamePrice, daysToBuild);
 		//List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer days, Integer daysLeft) throws FileNotFoundException
@@ -129,11 +129,11 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 						//stores integer value
 						f.add(Integer.parseInt(e[current]));
 					}
-					System.out.println(a);
-					System.out.println(b);
-					System.out.println(c);
-					System.out.println(d);
-					System.out.println(f);
+					//System.out.println(a);
+					//System.out.println(b);
+					//System.out.println(c);
+					//System.out.println(d);
+					//System.out.println(f);
 				current++;
 			}
 		}
@@ -167,7 +167,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 	public static void giveGifts(List<Double> gP, Double b, List<Boolean> NorN, List<Integer> age, List<String> name, List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer days, List<Integer> daysLeft) throws FileNotFoundException
 	{
 		//Declare variables
-		boolean balanced = false, newGift = false;
+		boolean balanced = false, newGift = false, booleanHolder = false;
 		double[] giftPrice = new double[age.size()];
 		String[] giftName1 = new String[age.size()];
 		String holder = "";
@@ -175,6 +175,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 		//Begin for 1
 		for(int a = 0; a < age.size(); a++)
 		{
+			newGift = false;
 			//Begin while 1
 			while(!newGift && NorN.get(a) == true)
 			{
@@ -182,7 +183,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 				for(int c = gP.size() - 1; c >= 0; c--)
 				{
 					//Begin if 1
-					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c) && days < daysLeft.get(c))
+					if(gP.get(c) < b && age.get(c) <= maxAge.get(c) && age.get(c) >= minAge.get(c) && days > daysLeft.get(c))
 					{
 						giftPrice[a] = gP.get(c);
 						giftName1[a] = giftName.get(c);
@@ -219,7 +220,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 				//Begin if 4
 				if(!newGift)
 				{
-					System.out.println("Santa is going to be in debt.");
+					newGift = true;
 				}
 				//End if 4
 			}
@@ -229,7 +230,14 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 		//Begin for loop 5
 		for(int f = 0; f < age.size(); f++)
 		{
+			//Begin if 5
+			if(giftName1[f].equals("null"))
+			{
+				giftName1[f] = "lack of a present due to being naughty";
+			}
+			//End if 5
 			holder = name.get(f) + " got a " + giftName1[f] + ".";
+			System.out.println(holder);
 			printToFile(holder);
 		}
 		//End for loop 5
@@ -327,7 +335,7 @@ public static void giftSorted(String[] e, List<String> a, List<Integer> b, List<
 		int sortCounter = 0;
 
 		//Begin for 1
-		for(int a = 0; a < 3; a++)
+		for(int a = 0; a < prices.size(); a++)
 		{
 			sortedPrices.add(prices.get(a));
 		}
