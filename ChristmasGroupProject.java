@@ -1,4 +1,4 @@
-package com.Troy_Test.Troy;
+//package com.Troy_Test.Troy;
 
 import java.util.*;
 import java.io.*;
@@ -39,7 +39,7 @@ public class ChristmasGroupProject
 		System.out.println("Please enter the current budget.");
 		budget = Double.parseDouble(scan.nextLine());
 
-		System.out.println("How many days are left till Christmas Eve");
+		System.out.println("How many days are left till Christmas Eve?");
 		daysLeft = Integer.parseInt(scan.nextLine());
 
 		kidSorted(trimArray(grabKids()), names, NorN, age);
@@ -47,7 +47,7 @@ public class ChristmasGroupProject
 		//List<Integer> minAge, List<Integer> maxAge, List<String> giftName, Integer days, Integer daysLeft) throws FileNotFoundException
 		sortGifts(gameName, gamePrice, startingAge, endingAge, daysToBuild);
 		giveGifts(gamePrice, budget, NorN, age, names, startingAge, endingAge, gameName, daysLeft, daysToBuild, writer);
-		
+
 		//closing of the writer -TC
 		writer.close();
 	}
@@ -148,7 +148,7 @@ public class ChristmasGroupProject
 			}
 		}
 
-		System.out.println(numberOfUsed);
+		//System.out.println(numberOfUsed);
 
 		String[] newbie = new String[numberOfUsed];
 
@@ -185,6 +185,7 @@ public class ChristmasGroupProject
 						giftPrice[a] = gP.get(c);
 						giftName1[a] = giftName.get(c);
 						newGift = true;
+						b = b - gP.get(c);
 						break;
 					}
 					//End if 1
@@ -200,10 +201,11 @@ public class ChristmasGroupProject
 						for(int e = gP.size() - 1; e >= 0; e--)
 						{
 							//Begin if 3
-							if(gP.get(e) < b && age.get(e) <= maxAge.get(e) && age.get(e) >= minAge.get(e) && days < daysLeft.get(e))
+							if(gP.get(e) < b + (giftPrice[d] - gP.get(e)) && gP.get(e) < giftPrice[d] && age.get(d) <= maxAge.get(e) && age.get(d) >= minAge.get(e) && days > daysLeft.get(e) && NorN.get(d) == true)
 							{
-								giftPrice[a] = gP.get(e);
-								giftName1[a] = giftName.get(e);
+								b = (b + giftPrice[d]) - gP.get(e);
+								giftPrice[d] = gP.get(e);
+								giftName1[d] = giftName.get(e);
 								newGift = true;
 								break;
 							}
@@ -230,11 +232,10 @@ public class ChristmasGroupProject
 			//Begin if 5
 			if(giftName1[f] == null)
 			{
-				giftName1[f] = "lack of a present due to being naughty";
+				giftName1[f] = "big empty box";
 			}
 			//End if 5
 			holder = name.get(f) + " got a " + giftName1[f] + ".";
-			System.out.println(holder);
 			printToFile(w, holder);
 		}
 		//End for loop 5
@@ -242,15 +243,15 @@ public class ChristmasGroupProject
 		printToFile(w, holder);
 	}
 	//End giveGifts
-	//Begin grabKids
-
+	//Begin printToFile
 	public static void printToFile(PrintWriter w, String t) throws FileNotFoundException
 	{
 		// cost, remainder, list of what kids and their gifts, and total days needed
 		w.write(t);
 		w.println();
 	}
-
+	//End printToFile
+	//Begin grabKids
 	public static String[] grabKids() throws FileNotFoundException
 	{
 		//Variballs
@@ -274,7 +275,7 @@ public class ChristmasGroupProject
 			for (String str: t)
 			{
 				massData[counter] = str;
-				System.out.println(massData[counter]);
+				//System.out.println(massData[counter]);
 				counter++;
 			}
 			//End for 1
@@ -306,7 +307,7 @@ public class ChristmasGroupProject
 			for (String str: t)
 			{
 				massData[counter] = str;
-				System.out.println(massData[counter]);
+				//System.out.println(massData[counter]);
 				counter++;
 			}
 			//End for 1
@@ -351,7 +352,7 @@ public class ChristmasGroupProject
 			{
 				sortCounter++;
 				//Begin if 1
-				if(sortCounter + 1 > sortedPrices.size())
+				if(sortCounter + 1 >= sortedPrices.size())
 				{
 					sortCounter = 0;
 				}
@@ -381,8 +382,8 @@ public class ChristmasGroupProject
 			sortedLowAge.add(lowAge.get(prices.indexOf(sortedPrices.get(c))));
 			sortedHighAge.add(highAge.get(prices.indexOf(sortedPrices.get(c))));
 			sortedProductionTime.add(productionTime.get(prices.indexOf(sortedPrices.get(c))));
-			System.out.println(sortedNames.get(c));
-			System.out.println(sortedPrices.get(c));
+			//System.out.println(sortedNames.get(c));
+			//System.out.println(sortedPrices.get(c));
 		}
 		//End for 3
 		//Begin for 4
